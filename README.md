@@ -18,10 +18,10 @@ This project involves testing the Users Endpoint of the Platzi Fake Store API us
 # Project Setup
 - Clone the Repository: Open a terminal or command prompt. Clone the repository to your local machine using the following command:
 ```
-git clone <repository-url>
+git clone https://github.com/adityaak217/Platzi-Fake-Store-API-
 
 ```
-- Import the Postman Collection: Open Postman. In Postman, click the Import button in the app.Upload the Postman collection file (API_Test_Collection.postman_collection.json), found in the repository. 
+- Import the Postman Collection: Open Postman. In Postman, click the Import button in the app.Upload the Postman collection file (Platzi.postman_collection.json), found in the repository. 
 
 
 
