@@ -29,6 +29,6 @@ git clone https://github.com/adityaak217/Platzi-Fake-Store-API-
 # Running the Collection with Newman 
 To generate an HTML report using Newman, run the following command:
 ```
-newman run "collection.json" -r htmlextra
+newman run "Platzi.postman_collection.json" -r htmlextra
 ```
 
