@@ -23,8 +23,13 @@
 											"pm.test(\"Status code is 200\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
 											"});\r",
-											"pm.test(\"Status code name has string\", function () {\r",
-											"    pm.response.to.have.status(\"OK\");\r",
+											"pm.test(\"Response body is an array\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData).to.be.an(\"array\");\r",
+											"});\r",
+											"pm.test(\"Correct number of users returned\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.length).to.eql(parseInt(pm.request.url.query.get(\"limit\")));\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -119,7 +124,15 @@
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
-											"});"
+											"});\r",
+											"\r",
+											"pm.test(\"Response contains valid user details\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"userid\"));\r",
+											"   \r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -330,10 +343,13 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
 											"});\r",
-											""
+											"pm.test(\"Response body is empty array\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData).to.eql([]);\r",
+											"});"
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -375,11 +391,14 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
 											"\r",
-											""
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Error message is meaningful\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.include(\"Invalid limit value\");\r",
+											"});"
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -433,8 +452,12 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Error message indicates exceeded limit\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.include(\"Limit exceeds the maximum allowed value\");\r",
 											"});\r",
 											""
 										],
@@ -1298,10 +1321,13 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});\r",
-									""
+									"pm.test(\"Response body is empty array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql([]);\r",
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1343,10 +1369,13 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});\r",
-									"\r",
+									"pm.test(\"Error message is meaningful\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Invalid limit value\");\r",
+									"});\r",
 									""
 								],
 								"type": "text/javascript",
@@ -1401,10 +1430,13 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});\r",
-									""
+									"pm.test(\"Error message indicates exceeded limit\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Limit exceeds the maximum allowed value\");\r",
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1449,8 +1481,13 @@
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
-									"pm.test(\"Status code name has string\", function () {\r",
-									"    pm.response.to.have.status(\"OK\");\r",
+									"pm.test(\"Response body is an array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an(\"array\");\r",
+									"});\r",
+									"pm.test(\"Correct number of users returned\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length).to.eql(parseInt(pm.request.url.query.get(\"limit\")));\r",
 									"});"
 								],
 								"type": "text/javascript",
@@ -2192,7 +2229,15 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});"
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains valid user details\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"userid\"));\r",
+									"   \r",
+									"});\r",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -2494,6 +2539,10 @@
 		},
 		{
 			"key": "userid",
+			"value": ""
+		},
+		{
+			"key": "29",
 			"value": ""
 		}
 	]
